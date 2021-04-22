@@ -1,0 +1,33 @@
+[phones]
+
+exten => 100,1,NoOp(Calling Saiba)
+same => n,NoOp(Dialing)
+same => n,Dial(SIP/saiba)
+same => n,Hangup
+
+exten => 200,1,NoOp(Calling Demo)
+same => n,NoOp(Dialing)
+same => n,Playback(tt-monkeys)
+same => n,Dial(SIP/demo)
+same => n,Hangup
+
+
+
+[GOIP2]
+
+exten => GOIP2,1,NoOp(Incoming Call)
+same => n,Goto(phones,200,1)
+same =
+same => n,Hangup()
+
+
+
+
+
+[in]
+
+exten => 716202298,1,Goto(phones,200,1)
+
+
+
+[out]
